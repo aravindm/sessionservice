@@ -1,11 +1,16 @@
 package com.gg.sessionservice.api;
 
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.util.Map;
 
-@Data
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Session {
-    String id;
-    Map<String, Object> data;
+    private String id;
+    private Long ttl;
+    private Map<String, String> data;
 }

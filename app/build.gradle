@@ -6,7 +6,7 @@ mainClassName = 'com.gg.sessionservice.SessionService'
 dependencies {
     compile(
             'io.dropwizard:dropwizard-core:' + dropwizardVersion,
-            'org.projectlombok:lombok:1.14.8',
+            'redis.clients:jedis:2.6.0',
             project(':api')
     )
 
@@ -25,12 +25,12 @@ task oneJar(type: OneJar) {
 task runDebug(type: JavaExec, dependsOn: 'classes') {
     main = mainClassName
     classpath = sourceSets.main.runtimeClasspath
-    args 'server', 'src/main/resources/import.yml'
+    args 'server', 'src/main/resources/session.yml'
     jvmArgs "-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005"
 }
 
 run {
-    args 'server', 'src/main/resources/import.yml'
+    args 'server', 'src/main/resources/session.yml'
 }
 
 artifacts {
