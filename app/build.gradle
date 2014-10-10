@@ -1,0 +1,38 @@
+apply plugin: 'gradle-one-jar'
+apply plugin: 'application'
+
+mainClassName = 'com.gg.sessionservice.SessionService'
+
+dependencies {
+    compile(
+            'io.dropwizard:dropwizard-core:' + dropwizardVersion,
+            'org.projectlombok:lombok:1.14.8',
+            project(':api')
+    )
+
+    testCompile(
+            'junit:junit:4.6',
+            'org.easytesting:fest-assert:1.4',
+            'org.mockito:mockito-all:1.8.4',
+    )
+}
+
+task oneJar(type: OneJar) {
+    mainClass = mainClassName
+    mergeManifestFromJar = true
+}
+
+task runDebug(type: JavaExec, dependsOn: 'classes') {
+    main = mainClassName
+    classpath = sourceSets.main.runtimeClasspath
+    args 'server', 'src/main/resources/import.yml'
+    jvmArgs "-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005"
+}
+
+run {
+    args 'server', 'src/main/resources/import.yml'
+}
+
+artifacts {
+    oneJar
+}

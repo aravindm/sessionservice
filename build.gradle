@@ -1,0 +1,39 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'com.github.rholder:gradle-one-jar:1.0.4'
+    }
+}
+
+allprojects{
+    apply plugin: 'idea'
+    apply plugin: 'java'
+
+    group = 'session-service'
+    version = project.hasProperty('version') ? version : '1.0-SNAPSHOT'
+
+    description = "session service"
+
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+
+    project.ext {
+        dropwizardVersion = '0.7.1'
+        commitId = project.hasProperty('commitId') ? commitId : '0'
+    }
+
+    repositories {
+        mavenCentral()
+    }
+
+    jar{
+        manifest {
+            attributes 'Implementation-Version': version + ' [' + commitId + ']'
+        }
+    }
+}
+

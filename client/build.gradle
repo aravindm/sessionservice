@@ -1,0 +1,6 @@
+dependencies {
+    compile(
+            'org.projectlombok:lombok:1.14.8',
+            'com.sun.jersey:jersey-client:1.18.1'
+    )
+}

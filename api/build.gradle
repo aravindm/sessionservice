@@ -1,0 +1,11 @@
+dependencies {
+    compile(
+            'org.projectlombok:lombok:1.14.8'
+    )
+
+    testCompile(
+            'junit:junit:4.6',
+            'org.easytesting:fest-assert:1.4',
+            'org.mockito:mockito-all:1.8.4',
+    )
+}

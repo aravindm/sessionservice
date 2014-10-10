@@ -1,0 +1,2 @@
+rootProject.name = 'sessionservice'
+include 'api', 'app', 'client'
